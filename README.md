@@ -26,5 +26,24 @@ DISCORD_TOKEN="YOUR_TOKEN_HERE"
 - Run the program with your guild ID like this:
 
 ```bash
-go run . -guild "710225099923521558" -channel ""
+go run . --guild "710225099923521558" --expr "author_name.size() == 0 || author_name.startsWith(\"EthanThatOneKid\")" --verbose
+```
+
+```bash
+go run . --guild "710225099923521558" --expr "channel_parent_id == 1055675648296890388" --verbose
+```
+
+### Reference
+
+```go
+// MessageData is the data for a message in a CEL expression.
+type MessageData struct {
+	ChannelParentID string
+	ChannelID       string
+	ChannelName     string
+	Timestamp       time.Time
+	AuthorID        string
+	AuthorName      string
+	Text            string
+}
 ```
