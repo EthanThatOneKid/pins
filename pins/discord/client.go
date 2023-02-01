@@ -94,7 +94,7 @@ func (c *client) Pins(options pins.PinsOptions) (*pins.Pins, error) {
 				Timestamp:   message.Timestamp.Time(),
 				AuthorID:    message.Author.ID,
 				Text:        message.Content,
-				Attachments: convertAttachments(message.Attachments),
+				Attachments: message.Attachments,
 			})
 
 			mentions := []pins.Author{{
@@ -164,23 +164,6 @@ func (c *client) Channels(guildID discord.GuildID) ([]pins.Channel, error) {
 
 	// Convert the channels to the pins format.
 	return convertChannels(channels), nil
-}
-
-func convertAttachments(attachment []discord.Attachment) []pins.Attachment {
-	var converted []pins.Attachment
-	for _, attachment := range attachment {
-		converted = append(converted, convertAttachment(attachment))
-	}
-	return converted
-}
-
-func convertAttachment(attachment discord.Attachment) pins.Attachment {
-	return pins.Attachment{
-		URL:         attachment.URL,
-		Filename:    attachment.Filename,
-		Size:        attachment.Size,
-		ContentType: attachment.ContentType,
-	}
 }
 
 func convertChannels(channels []discord.Channel) []pins.Channel {
