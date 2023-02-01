@@ -63,16 +63,7 @@ type Author struct {
 }
 
 // Attachment is a file attachment.
-type Attachment struct {
-	// URL is the URL of the attachment.
-	URL string `json:"url"`
-	// Filename is the name of the file.
-	Filename string `json:"filename"`
-	// Size is the size of the file in bytes.
-	Size uint64 `json:"size"`
-	// ContentType is the media type of the file.
-	ContentType string `json:"content_type"`
-}
+type Attachment = discord.Attachment
 
 // Channel is a channel struct.
 type Channel struct {
